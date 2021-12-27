@@ -8,4 +8,6 @@ public interface IContactDService {
     List<ContactD> getAllContacts();
 
     List<ContactD> getAllActiveContacts();
+
+    List<ContactD> saveContacts(List<ContactD> contactsToSave);
 }

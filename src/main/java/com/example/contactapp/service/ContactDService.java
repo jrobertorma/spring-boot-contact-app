@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ContactDService implements IContactDService{
@@ -23,11 +24,17 @@ public class ContactDService implements IContactDService{
         var allContacts = contactDRepository.findAll();
         var activeContacts = new ArrayList<ContactD>();
         for (ContactD contact: allContacts) {
-            if(contact.getGeneralStatusSid().equals(1)) {
+            if(Objects.equals(contact.getGeneralStatusSid(),1)) {
                 activeContacts.add(contact);
             }
         }
 
         return activeContacts;
+    }
+
+    @Override
+    public List<ContactD> saveContacts(List<ContactD> contactsToSave) {
+        var savedContacts = contactDRepository.saveAll(contactsToSave);
+        return savedContacts;
     }
 }
